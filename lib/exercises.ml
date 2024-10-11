@@ -19,3 +19,6 @@ let rev lst =
   let rec aux acc = function [] -> acc | x :: xs -> aux (x :: acc) xs in
   aux [] lst
 (* let rev lst = List.fold_left (fun acc a -> a :: acc) [] lst *)
+
+let is_palindrome lst = rev lst = lst
+(* let is_palindrome lst = List.rev lst = lst *)
