@@ -6,6 +6,7 @@ let tail_of_list _ = assert_equal (Some "d") (last lst)
 let last_two_of_list _ = assert_equal (Some ("c", "d")) (last_two lst)
 let nth_element _ = assert_equal (Some "c") (my_nth lst 2)
 let list_length _ = assert_equal 4 (length lst)
+let rev_list _ = assert_equal [ "d"; "c"; "b"; "a" ] (rev lst)
 
 let tests =
   "Exercise Tests"
@@ -14,6 +15,7 @@ let tests =
          "last_two_of_list" >:: last_two_of_list;
          "nth_element" >:: nth_element;
          "list_length" >:: list_length;
+         "rev_list" >:: rev_list;
        ]
 
 let () = run_test_tt_main tests
