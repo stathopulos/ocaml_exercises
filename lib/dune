@@ -1,0 +1,3 @@
+(library
+ (public_name ocaml_exercises)
+ (name ocaml_exercises))
