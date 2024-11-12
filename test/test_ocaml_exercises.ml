@@ -11,6 +11,7 @@ let list_palindrome _ = assert_equal true (is_palindrome [ "d"; "a"; "d" ])
 let rle_list _ = assert_equal [(4, "a"); (1, "b"); (2, "c"); (2, "a"); (1, "d"); (4, "e")] (rle ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e"])
 let modified_rle _ = assert_equal [Many (4, "a"); One "b"; Many (2, "c"); Many (2, "a"); One "d"; Many (4, "e")] (mod_rle ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e"])
 let duplicate_list _ = assert_equal ["a"; "a"; "b"; "b"; "c"; "c"; "c"; "c"; "d"; "d"] (duplicate ["a"; "b"; "c"; "c"; "d"])
+let split_prefix _ = assert_equal (["a"; "b"; "c"], ["d"; "e"; "f"; "g"; "h"; "i"; "j"]) (split ["a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j"] 3)
 let tests =
   "Exercise Tests"
   >::: [
@@ -23,6 +24,7 @@ let tests =
          "rle_list" >:: rle_list;
          "modified_rle" >:: modified_rle;
          "duplicate_list" >:: duplicate_list;
+         "split_prefix" >:: split_prefix;
        ]
 
 let () = run_test_tt_main tests

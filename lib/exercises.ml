@@ -46,3 +46,11 @@ let mod_rle lst =
   List.rev (aux 0 [] lst)
 
 let rec duplicate = function [] -> [] | x :: xs -> x :: x :: duplicate xs
+
+let split lst n =
+  let rec aux i acc = function
+    | [] -> (List.rev acc, [])
+    | x :: xs as lst ->
+        if i = 0 then (List.rev acc, lst) else aux (i - 1) (x :: acc) xs
+  in
+  aux n [] lst
