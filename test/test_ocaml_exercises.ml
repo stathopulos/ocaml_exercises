@@ -41,6 +41,11 @@ let split_prefix _ =
 let remove_element _ =
   assert_equal [ "a"; "c"; "d" ] (remove_at 1 [ "a"; "b"; "c"; "d" ])
 
+let insert_element _ =
+  assert_equal
+    [ "a"; "alfa"; "b"; "c"; "d" ]
+    (insert_at "alfa" 1 [ "a"; "b"; "c"; "d" ])
+
 let tests =
   "Exercise Tests"
   >::: [
@@ -55,6 +60,7 @@ let tests =
          "duplicate_list" >:: duplicate_list;
          "split_prefix" >:: split_prefix;
          "remove_element" >:: remove_element;
+         "insert_element" >:: insert_element;
        ]
 
 let () = run_test_tt_main tests

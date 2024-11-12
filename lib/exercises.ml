@@ -58,3 +58,7 @@ let split lst n =
 let rec remove_at i = function
   | [] -> []
   | x :: xs -> if i = 0 then xs else x :: remove_at (i - 1) xs
+
+let rec insert_at e i = function
+  | [] -> []
+  | x :: xs as lst -> if i = 0 then e :: lst else x :: insert_at e (i - 1) xs
