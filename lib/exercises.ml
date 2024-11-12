@@ -33,6 +33,7 @@ let rle lst =
   List.rev (aux 0 [] lst)
 
 type 'a rle = One of 'a | Many of int * 'a
+
 let mod_rle lst =
   let make_tuple count x = if count = 1 then One x else Many (count, x) in
   let rec aux count acc = function
@@ -44,9 +45,4 @@ let mod_rle lst =
   in
   List.rev (aux 0 [] lst)
 
-let duplicate lst =
-  let rec aux acc = function
-    | [] -> acc
-    | x::xs -> aux (x::x::acc) xs
-in
-List.rev (aux [] lst)
+let rec duplicate = function [] -> [] | x :: xs -> x :: x :: duplicate xs
