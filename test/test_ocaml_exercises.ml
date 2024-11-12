@@ -38,6 +38,9 @@ let split_prefix _ =
     ([ "a"; "b"; "c" ], [ "d"; "e"; "f"; "g"; "h"; "i"; "j" ])
     (split [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 3)
 
+let remove_element _ =
+  assert_equal [ "a"; "c"; "d" ] (remove_at 1 [ "a"; "b"; "c"; "d" ])
+
 let tests =
   "Exercise Tests"
   >::: [
@@ -51,6 +54,7 @@ let tests =
          "modified_rle" >:: modified_rle;
          "duplicate_list" >:: duplicate_list;
          "split_prefix" >:: split_prefix;
+         "remove_element" >:: remove_element;
        ]
 
 let () = run_test_tt_main tests

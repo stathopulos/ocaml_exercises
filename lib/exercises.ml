@@ -54,3 +54,7 @@ let split lst n =
         if i = 0 then (List.rev acc, lst) else aux (i - 1) (x :: acc) xs
   in
   aux n [] lst
+
+let rec remove_at i = function
+  | [] -> []
+  | x :: xs -> if i = 0 then xs else x :: remove_at (i - 1) xs
