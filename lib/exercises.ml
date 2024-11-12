@@ -43,3 +43,10 @@ let mod_rle lst =
         else aux 0 (make_tuple (count + 1) a :: acc) t
   in
   List.rev (aux 0 [] lst)
+
+let duplicate lst =
+  let rec aux acc = function
+    | [] -> acc
+    | x::xs -> aux (x::x::acc) xs
+in
+List.rev (aux [] lst)
