@@ -62,3 +62,8 @@ let rec remove_at i = function
 let rec insert_at e i = function
   | [] -> []
   | x :: xs as lst -> if i = 0 then e :: lst else x :: insert_at e (i - 1) xs
+
+let rec range b t =
+  if b = t then [ b ]
+  else if b > t then b :: range (b - 1) t
+  else b :: range (b + 1) t

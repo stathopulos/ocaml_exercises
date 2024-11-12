@@ -46,6 +46,8 @@ let insert_element _ =
     [ "a"; "alfa"; "b"; "c"; "d" ]
     (insert_at "alfa" 1 [ "a"; "b"; "c"; "d" ])
 
+let range_of_ints _ = assert_equal [ 4; 5; 6; 7; 8; 9 ] (range 4 9)
+
 let tests =
   "Exercise Tests"
   >::: [
@@ -61,6 +63,7 @@ let tests =
          "split_prefix" >:: split_prefix;
          "remove_element" >:: remove_element;
          "insert_element" >:: insert_element;
+         "range_of_ints" >:: range_of_ints;
        ]
 
 let () = run_test_tt_main tests
