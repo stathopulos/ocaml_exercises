@@ -2,12 +2,59 @@ open OUnit2
 open Ocaml_exercises.Exercises
 
 let lst = [ "a"; "b"; "c"; "d" ]
+
 let tail_of_list _ = assert_equal (Some "d") (last lst)
+
 let last_two_of_list _ = assert_equal (Some ("c", "d")) (last_two lst)
+
 let nth_element _ = assert_equal (Some "c") (my_nth lst 2)
+
 let list_length _ = assert_equal 4 (length lst)
+
 let rev_list _ = assert_equal [ "d"; "c"; "b"; "a" ] (rev lst)
+
 let list_palindrome _ = assert_equal true (is_palindrome [ "d"; "a"; "d" ])
+
+let flatten_list _ =
+  assert_equal
+    [ "a"; "b"; "c"; "d"; "e" ]
+    (flatten
+       [ One "a"; ManyL [ One "b"; ManyL [ One "c"; One "d" ]; One "e" ] ])
+
+let compress_list _ =
+  assert_equal
+    [ "a"; "b"; "c"; "a"; "d"; "e" ]
+    (compress
+       [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ])
+
+let pack_list _ =
+  assert_equal
+    [
+      [ "a"; "a"; "a"; "a" ];
+      [ "b" ];
+      [ "c"; "c" ];
+      [ "a"; "a" ];
+      [ "d"; "d" ];
+      [ "e"; "e"; "e"; "e" ];
+    ]
+    (pack
+       [
+         "a";
+         "a";
+         "a";
+         "a";
+         "b";
+         "c";
+         "c";
+         "a";
+         "a";
+         "d";
+         "d";
+         "e";
+         "e";
+         "e";
+         "e";
+       ])
 
 let rle_list _ =
   assert_equal
@@ -48,47 +95,6 @@ let insert_element _ =
 
 let range_of_ints _ = assert_equal [ 4; 5; 6; 7; 8; 9 ] (range 4 9)
 
-let flatten_list _ =
-  assert_equal
-    [ "a"; "b"; "c"; "d"; "e" ]
-    (flatten
-       [ OneL "a"; ManyL [ OneL "b"; ManyL [ OneL "c"; OneL "d" ]; OneL "e" ] ])
-
-let compress_list _ =
-  assert_equal
-    [ "a"; "b"; "c"; "a"; "d"; "e" ]
-    (compress
-       [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ])
-
-let pack_list _ =
-  assert_equal
-    [
-      [ "a"; "a"; "a"; "a" ];
-      [ "b" ];
-      [ "c"; "c" ];
-      [ "a"; "a" ];
-      [ "d"; "d" ];
-      [ "e"; "e"; "e"; "e" ];
-    ]
-    (pack
-       [
-         "a";
-         "a";
-         "a";
-         "a";
-         "b";
-         "c";
-         "c";
-         "a";
-         "a";
-         "d";
-         "d";
-         "e";
-         "e";
-         "e";
-         "e";
-       ])
-
 let tests =
   "Exercise Tests"
   >::: [
@@ -98,16 +104,17 @@ let tests =
          "list_length" >:: list_length;
          "rev_list" >:: rev_list;
          "list_palindrome" >:: list_palindrome;
+         "flatten_list" >:: flatten_list;
          "compress_list" >:: compress_list;
          "pack_list" >:: pack_list;
          "rle_list" >:: rle_list;
          "modified_rle" >:: modified_rle;
          "duplicate_list" >:: duplicate_list;
+         (* 2 more rle exercises go here *)
          "split_prefix" >:: split_prefix;
          "remove_element" >:: remove_element;
          "insert_element" >:: insert_element;
          "range_of_ints" >:: range_of_ints;
-         "flatten_list" >:: flatten_list;
        ]
 
 let () = run_test_tt_main tests
