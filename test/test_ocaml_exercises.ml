@@ -98,6 +98,8 @@ let tests =
          "list_length" >:: list_length;
          "rev_list" >:: rev_list;
          "list_palindrome" >:: list_palindrome;
+         "compress_list" >:: compress_list;
+         "pack_list" >:: pack_list;
          "rle_list" >:: rle_list;
          "modified_rle" >:: modified_rle;
          "duplicate_list" >:: duplicate_list;
@@ -106,8 +108,6 @@ let tests =
          "insert_element" >:: insert_element;
          "range_of_ints" >:: range_of_ints;
          "flatten_list" >:: flatten_list;
-         "compress_list" >:: compress_list;
-         "pack_list" >:: pack_list;
        ]
 
 let () = run_test_tt_main tests

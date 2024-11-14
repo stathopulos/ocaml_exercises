@@ -23,6 +23,20 @@ let rev lst =
 let is_palindrome lst = rev lst = lst
 (* let is_palindrome lst = List.rev lst = lst *)
 
+let rec compress = function
+  | a :: (b :: _ as t) -> if a = b then compress t else a :: compress t
+  | smaller -> smaller
+
+let pack lst =
+  let rec aux current acc = function
+    | [] -> []
+    | [ x ] -> (x :: current) :: acc
+    | a :: (b :: _ as t) ->
+        if a = b then aux (a :: current) acc t
+        else aux [] ((a :: current) :: acc) t
+  in
+  List.rev (aux [] [] lst)
+
 let rle lst =
   let rec aux count acc = function
     | [] -> []
@@ -77,17 +91,3 @@ let flatten lst =
     | ManyL l :: t -> aux (aux acc l) t
   in
   List.rev (aux [] lst)
-
-let rec compress = function
-  | a :: (b :: _ as t) -> if a = b then compress t else a :: compress t
-  | smaller -> smaller
-
-let pack lst =
-  let rec aux current acc = function
-    | [] -> []
-    | [ x ] -> (x :: current) :: acc
-    | a :: (b :: _ as t) ->
-        if a = b then aux (a :: current) acc t
-        else aux [] ((a :: current) :: acc) t
-  in
-  List.rev (aux [] [] lst)
