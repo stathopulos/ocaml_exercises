@@ -77,3 +77,7 @@ let flatten lst =
     | ManyL l :: t -> aux (aux acc l) t
   in
   List.rev (aux [] lst)
+
+let rec compress = function
+  | a :: (b::_ as t) -> if a = b then compress t else a :: compress t
+  | smaller -> smaller

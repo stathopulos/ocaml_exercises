@@ -54,6 +54,8 @@ let flatten_list _ =
     (flatten
        [ OneL "a"; ManyL [ OneL "b"; ManyL [ OneL "c"; OneL "d" ]; OneL "e" ] ])
 
+let compress_list _ = assert_equal ["a"; "b"; "c"; "a"; "d"; "e"] (compress ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e"])
+
 let tests =
   "Exercise Tests"
   >::: [
@@ -71,6 +73,7 @@ let tests =
          "insert_element" >:: insert_element;
          "range_of_ints" >:: range_of_ints;
          "flatten_list" >:: flatten_list;
+         "compress_list" >:: compress_list;
        ]
 
 let () = run_test_tt_main tests
