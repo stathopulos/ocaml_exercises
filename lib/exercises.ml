@@ -79,5 +79,15 @@ let flatten lst =
   List.rev (aux [] lst)
 
 let rec compress = function
-  | a :: (b::_ as t) -> if a = b then compress t else a :: compress t
+  | a :: (b :: _ as t) -> if a = b then compress t else a :: compress t
   | smaller -> smaller
+
+let pack lst =
+  let rec aux current acc = function
+    | [] -> []
+    | [ x ] -> (x :: current) :: acc
+    | a :: (b :: _ as t) ->
+        if a = b then aux (a :: current) acc t
+        else aux [] ((a :: current) :: acc) t
+  in
+  List.rev (aux [] [] lst)
