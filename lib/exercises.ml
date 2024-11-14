@@ -67,3 +67,13 @@ let rec range b t =
   if b = t then [ b ]
   else if b > t then b :: range (b - 1) t
   else b :: range (b + 1) t
+
+type 'a node = OneL of 'a | ManyL of 'a node list
+
+let flatten lst =
+  let rec aux acc = function
+    | [] -> acc
+    | OneL x :: t -> aux (x :: acc) t
+    | ManyL l :: t -> aux (aux acc l) t
+  in
+  List.rev (aux [] lst)
