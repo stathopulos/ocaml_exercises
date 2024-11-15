@@ -100,6 +100,11 @@ let duplicate_list _ =
     [ "a"; "a"; "b"; "b"; "c"; "c"; "c"; "c"; "d"; "d" ]
     (duplicate [ "a"; "b"; "c"; "c"; "d" ])
 
+let replicate_list _ =
+  assert_equal
+    [ "a"; "a"; "a"; "b"; "b"; "b"; "c"; "c"; "c" ]
+    (replicate [ "a"; "b"; "c" ] 3)
+
 let split_prefix _ =
   assert_equal
     ([ "a"; "b"; "c" ], [ "d"; "e"; "f"; "g"; "h"; "i"; "j" ])
@@ -129,9 +134,10 @@ let tests =
          "pack_list" >:: pack_list;
          "rle_list" >:: rle_list;
          "modified_rle" >:: modified_rle;
-         "duplicate_list" >:: duplicate_list;
          "rle_decode" >:: rle_decode;
          "rle_direct_solution" >:: rle_direct_solution;
+         "duplicate_list" >:: duplicate_list;
+         "replicate_list" >:: replicate_list;
          "split_prefix" >:: split_prefix;
          "remove_element" >:: remove_element;
          "insert_element" >:: insert_element;

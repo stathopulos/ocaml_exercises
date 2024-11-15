@@ -90,6 +90,11 @@ let direct_rle lst =
 
 let rec duplicate = function [] -> [] | x :: xs -> x :: x :: duplicate xs
 
+let replicate lst n =
+  let rec copy acc x n = if n = 0 then acc else copy (x :: acc) x (n - 1) in
+  let rec aux acc = function [] -> acc | x :: xs -> aux (copy acc x n) xs in
+  aux [] (List.rev lst)
+
 let split lst n =
   let rec aux i acc = function
     | [] -> (List.rev acc, [])
