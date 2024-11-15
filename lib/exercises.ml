@@ -78,6 +78,16 @@ let decode_rle lst =
   in
   aux [] (List.rev lst)
 
+let direct_rle lst =
+  let rle count x = if count = 0 then One x else Many (count + 1, x) in
+  let rec aux count acc = function
+    | [] -> []
+    | [ x ] -> rle count x :: acc
+    | a :: (b :: _ as t) ->
+        if a = b then aux (count + 1) acc t else aux 0 (rle count a :: acc) t
+  in
+  List.rev (aux 0 [] lst)
+
 let rec duplicate = function [] -> [] | x :: xs -> x :: x :: duplicate xs
 
 let split lst n =

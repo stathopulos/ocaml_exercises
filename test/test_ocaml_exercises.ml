@@ -82,6 +82,19 @@ let rle_decode _ =
          Many (4, "e");
        ])
 
+let rle_direct_solution _ =
+  assert_equal
+    [
+      Many (4, "a");
+      One "b";
+      Many (2, "c");
+      Many (2, "a");
+      One "d";
+      Many (4, "e");
+    ]
+    (direct_rle
+       [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ])
+
 let duplicate_list _ =
   assert_equal
     [ "a"; "a"; "b"; "b"; "c"; "c"; "c"; "c"; "d"; "d" ]
@@ -118,7 +131,7 @@ let tests =
          "modified_rle" >:: modified_rle;
          "duplicate_list" >:: duplicate_list;
          "rle_decode" >:: rle_decode;
-         (* 2 more rle exercises go here *)
+         "rle_direct_solution" >:: rle_direct_solution;
          "split_prefix" >:: split_prefix;
          "remove_element" >:: remove_element;
          "insert_element" >:: insert_element;
