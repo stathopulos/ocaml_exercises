@@ -105,6 +105,11 @@ let replicate_list _ =
     [ "a"; "a"; "a"; "b"; "b"; "b"; "c"; "c"; "c" ]
     (replicate [ "a"; "b"; "c" ] 3)
 
+let drop_from_list _ =
+  assert_equal
+    [ "a"; "b"; "d"; "e"; "g"; "h"; "j" ]
+    (drop [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 3)
+
 let split_prefix _ =
   assert_equal
     ([ "a"; "b"; "c" ], [ "d"; "e"; "f"; "g"; "h"; "i"; "j" ])
@@ -138,6 +143,7 @@ let tests =
          "rle_direct_solution" >:: rle_direct_solution;
          "duplicate_list" >:: duplicate_list;
          "replicate_list" >:: replicate_list;
+         "drop_from_list" >:: drop_from_list;
          "split_prefix" >:: split_prefix;
          "remove_element" >:: remove_element;
          "insert_element" >:: insert_element;

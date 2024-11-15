@@ -95,6 +95,13 @@ let replicate lst n =
   let rec aux acc = function [] -> acc | x :: xs -> aux (copy acc x n) xs in
   aux [] (List.rev lst)
 
+let drop lst n =
+  let rec aux i = function
+    | [] -> []
+    | x :: xs -> if i = n then aux 1 xs else x :: aux (i + 1) xs
+  in
+  aux 1 lst
+
 let split lst n =
   let rec aux i acc = function
     | [] -> (List.rev acc, [])
