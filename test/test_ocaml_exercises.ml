@@ -2,17 +2,11 @@ open OUnit2
 open Ocaml_exercises.Exercises
 
 let lst = [ "a"; "b"; "c"; "d" ]
-
 let tail_of_list _ = assert_equal (Some "d") (last lst)
-
 let last_two_of_list _ = assert_equal (Some ("c", "d")) (last_two lst)
-
 let nth_element _ = assert_equal (Some "c") (my_nth lst 2)
-
 let list_length _ = assert_equal 4 (length lst)
-
 let rev_list _ = assert_equal [ "d"; "c"; "b"; "a" ] (rev lst)
-
 let list_palindrome _ = assert_equal true (is_palindrome [ "d"; "a"; "d" ])
 
 let flatten_list _ =
@@ -75,6 +69,19 @@ let modified_rle _ =
     (mod_rle
        [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ])
 
+let rle_decode _ =
+  assert_equal
+    [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]
+    (decode_rle
+       [
+         Many (4, "a");
+         One "b";
+         Many (2, "c");
+         Many (2, "a");
+         One "d";
+         Many (4, "e");
+       ])
+
 let duplicate_list _ =
   assert_equal
     [ "a"; "a"; "b"; "b"; "c"; "c"; "c"; "c"; "d"; "d" ]
@@ -110,6 +117,7 @@ let tests =
          "rle_list" >:: rle_list;
          "modified_rle" >:: modified_rle;
          "duplicate_list" >:: duplicate_list;
+         "rle_decode" >:: rle_decode;
          (* 2 more rle exercises go here *)
          "split_prefix" >:: split_prefix;
          "remove_element" >:: remove_element;

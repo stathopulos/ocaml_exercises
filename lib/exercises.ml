@@ -69,6 +69,15 @@ let mod_rle lst =
   in
   List.rev (aux 0 [] lst)
 
+let decode_rle lst =
+  let rec many acc n x = if n = 0 then acc else many (x :: acc) (n - 1) x in
+  let rec aux acc = function
+    | [] -> acc
+    | One x :: xs -> aux (x :: acc) xs
+    | Many (n, x) :: xs -> aux (many acc n x) xs
+  in
+  aux [] (List.rev lst)
+
 let rec duplicate = function [] -> [] | x :: xs -> x :: x :: duplicate xs
 
 let split lst n =
