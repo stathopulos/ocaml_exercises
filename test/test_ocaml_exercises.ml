@@ -115,6 +115,11 @@ let split_prefix _ =
     ([ "a"; "b"; "c" ], [ "d"; "e"; "f"; "g"; "h"; "i"; "j" ])
     (split [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 3)
 
+let slice_list _ =
+  assert_equal
+    [ "c"; "d"; "e"; "f"; "g" ]
+    (slice [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 2 6)
+
 let remove_element _ =
   assert_equal [ "a"; "c"; "d" ] (remove_at 1 [ "a"; "b"; "c"; "d" ])
 
@@ -145,6 +150,7 @@ let tests =
          "replicate_list" >:: replicate_list;
          "drop_from_list" >:: drop_from_list;
          "split_prefix" >:: split_prefix;
+         "slice_list" >:: slice_list;
          "remove_element" >:: remove_element;
          "insert_element" >:: insert_element;
          "range_of_ints" >:: range_of_ints;
