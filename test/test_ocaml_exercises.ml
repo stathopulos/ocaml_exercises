@@ -120,6 +120,11 @@ let slice_list _ =
     [ "c"; "d"; "e"; "f"; "g" ]
     (slice [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 2 6)
 
+let rotate_list _ =
+  assert_equal
+    [ "d"; "e"; "f"; "g"; "h"; "a"; "b"; "c" ]
+    (rotate [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h" ] 3)
+
 let remove_element _ =
   assert_equal [ "a"; "c"; "d" ] (remove_at 1 [ "a"; "b"; "c"; "d" ])
 
@@ -151,6 +156,7 @@ let tests =
          "drop_from_list" >:: drop_from_list;
          "split_prefix" >:: split_prefix;
          "slice_list" >:: slice_list;
+         "rotate_list" >:: rotate_list;
          "remove_element" >:: remove_element;
          "insert_element" >:: insert_element;
          "range_of_ints" >:: range_of_ints;
