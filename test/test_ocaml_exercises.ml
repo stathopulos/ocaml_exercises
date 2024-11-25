@@ -139,6 +139,8 @@ let random_list _ =
   assert_equal [ "e"; "c"; "g" ]
     (rand_select [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h" ] 3)
 
+let lotto_draw _ = assert_equal [ 21; 8; 28; 4; 34; 29 ] (lotto_select 6 49)
+
 let tests =
   "Exercise Tests"
   >::: [
@@ -165,6 +167,7 @@ let tests =
          "insert_element" >:: insert_element;
          "range_of_ints" >:: range_of_ints;
          "random_list" >:: random_list;
+         "lotto_draw" >:: lotto_draw;
        ]
 
 let () = run_test_tt_main tests

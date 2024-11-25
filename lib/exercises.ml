@@ -153,3 +153,5 @@ let rand_select lst n =
       aux (n - 1) (selected :: acc) rest (len - 1)
   in
   aux (min n length) [] lst length
+
+let lotto_select n m = rand_select (range 1 m) n
