@@ -135,6 +135,10 @@ let insert_element _ =
 
 let range_of_ints _ = assert_equal [ 4; 5; 6; 7; 8; 9 ] (range 4 9)
 
+let random_list _ =
+  assert_equal [ "e"; "c"; "g" ]
+    (rand_select [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h" ] 3)
+
 let tests =
   "Exercise Tests"
   >::: [
@@ -160,6 +164,7 @@ let tests =
          "remove_element" >:: remove_element;
          "insert_element" >:: insert_element;
          "range_of_ints" >:: range_of_ints;
+         "random_list" >:: random_list;
        ]
 
 let () = run_test_tt_main tests

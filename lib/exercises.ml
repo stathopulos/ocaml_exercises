@@ -137,3 +137,19 @@ let rec range b t =
   if b = t then [ b ]
   else if b > t then b :: range (b - 1) t
   else b :: range (b + 1) t
+
+let rand_select lst n =
+  Random.init 0;
+  let length = List.length lst in
+  let rec extract acc i = function
+    | [] -> raise Not_found
+    | x :: xs -> if i = 0 then (x, acc @ xs) else extract (x :: acc) (i - 1) xs
+  in
+  let extract_rand lst len = extract [] (Random.int len) lst in
+  let rec aux n acc lst len =
+    if n = 0 then acc
+    else
+      let selected, rest = extract_rand lst len in
+      aux (n - 1) (selected :: acc) rest (len - 1)
+  in
+  aux (min n length) [] lst length
